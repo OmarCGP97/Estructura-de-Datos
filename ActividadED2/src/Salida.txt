@@ -1,0 +1,116 @@
+** TEST SINGLY-LINKEDLIST CLASS **
+	** USING INTEGERS **
+Testing: addFirst(i | i >= 0 && i < 10) + toString
+[]
+[0]
+[1, 0]
+[2, 1, 0]
+[3, 2, 1, 0]
+[4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[6, 5, 4, 3, 2, 1, 0]
+[7, 6, 5, 4, 3, 2, 1, 0]
+[8, 7, 6, 5, 4, 3, 2, 1, 0]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+Testing: isEmpty + removeFirst + toString
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+[8, 7, 6, 5, 4, 3, 2, 1, 0]
+[7, 6, 5, 4, 3, 2, 1, 0]
+[6, 5, 4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[4, 3, 2, 1, 0]
+[3, 2, 1, 0]
+[2, 1, 0]
+[1, 0]
+[0]
+[]
+
+Testing: addLast(i | i >= 0 && i < 10) + toString
+[]
+[0]
+[0, 1]
+[0, 1, 2]
+[0, 1, 2, 3]
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5, 6]
+[0, 1, 2, 3, 4, 5, 6, 7]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Testing: isEmpty + removeLast + toString
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+[0, 1, 2, 3, 4, 5, 6, 7]
+[0, 1, 2, 3, 4, 5, 6]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3]
+[0, 1, 2]
+[0, 1]
+[0]
+[]
+
+Testing: add(2 * i | i >= 0 && i < 10) + toString
+[]
+[0]
+[0, 2]
+[0, 2, 4]
+[0, 2, 4, 6]
+[0, 2, 4, 6, 8]
+[0, 2, 4, 6, 8, 10]
+[0, 2, 4, 6, 8, 10, 12]
+[0, 2, 4, 6, 8, 10, 12, 14]
+[0, 2, 4, 6, 8, 10, 12, 14, 16]
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+Testing: remove(6) + toString
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+[0, 2, 4, 6, 8, 10, 14, 16, 18]
+Testing: remove(new Integer(6)) + toString
+[0, 2, 4, 8, 10, 14, 16, 18]
+
+Testing: size + indexOf + get
+Get element at index 0: 0
+Get element at index 1: 2
+Get element at index 2: 4
+Get element at index 3: 8
+Get element at index 4: 10
+Get element at index 5: 14
+Get element at index 6: 16
+Get element at index 7: 18
+
+Testing: size + contains
+Is element 0 contained in the list? true
+Is element 1 contained in the list? false
+Is element 2 contained in the list? true
+Is element 3 contained in the list? false
+Is element 4 contained in the list? true
+Is element 5 contained in the list? false
+Is element 6 contained in the list? false
+Is element 7 contained in the list? false
+
+Testing: getFirst + toString
+[0, 2, 4, 8, 10, 14, 16, 18]
+0
+
+Testing: getLast + toString
+[0, 2, 4, 8, 10, 14, 16, 18]
+18
+
+Testing: set(3, 20) + toString
+[0, 2, 4, 8, 10, 14, 16, 18]
+[0, 2, 4, 20, 10, 14, 16, 18]
+
+Testing: toArray
+[Ljava.lang.Object;@15db9742
+0 2 4 20 10 14 16 18 
+
+Testing: clear + toString
+[0, 2, 4, 20, 10, 14, 16, 18]
+[]
+
+	** USING STRINGS **
+[Hello, World]
+[Hello]
