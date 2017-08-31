@@ -1,0 +1,133 @@
+** TEST CIRCULAR DOUBLY-LINKEDLIST CLASS **
+	** USING INTEGERS **
+Testing: addFirst(i | i >= 0 && i < 10) + toString
+[]
+[0]
+[1, 0]
+[2, 1, 0]
+[3, 2, 1, 0]
+[4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[6, 5, 4, 3, 2, 1, 0]
+[7, 6, 5, 4, 3, 2, 1, 0]
+[8, 7, 6, 5, 4, 3, 2, 1, 0]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+Testing: isEmpty + removeFirst + toString
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+[8, 7, 6, 5, 4, 3, 2, 1, 0]
+[7, 6, 5, 4, 3, 2, 1, 0]
+[6, 5, 4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[4, 3, 2, 1, 0]
+[3, 2, 1, 0]
+[2, 1, 0]
+[1, 0]
+[0]
+[]
+
+Testing: addLast(i | i >= 0 && i < 10) + toString
+[]
+[0]
+[0, 1]
+[0, 1, 2]
+[0, 1, 2, 3]
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5, 6]
+[0, 1, 2, 3, 4, 5, 6, 7]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Testing: isEmpty + removeLast + toString
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+[0, 1, 2, 3, 4, 5, 6, 7]
+[0, 1, 2, 3, 4, 5, 6]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3]
+[0, 1, 2]
+[0, 1]
+[0]
+[]
+
+Testing: add(2 * i | i >= 0 && i < 10) + toString
+[]
+[0]
+[0, 2]
+[0, 2, 4]
+[0, 2, 4, 6]
+[0, 2, 4, 6, 8]
+[0, 2, 4, 6, 8, 10]
+[0, 2, 4, 6, 8, 10, 12]
+[0, 2, 4, 6, 8, 10, 12, 14]
+[0, 2, 4, 6, 8, 10, 12, 14, 16]
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+Testing: add(4, 7) + toString
+[0, 2, 4, 6, 7, 8, 10, 12, 14, 16, 18]
+Testing: add(8, 13) + toString
+[0, 2, 4, 6, 7, 8, 10, 12, 13, 14, 16, 18]
+Testing: add(0, -1) + toString
+[-1, 0, 2, 4, 6, 7, 8, 10, 12, 13, 14, 16, 18]
+Testing: add(size(), 20) + toString
+[-1, 0, 2, 4, 6, 7, 8, 10, 12, 13, 14, 16, 18, 20]
+
+Testing: remove(6) + toString
+[-1, 0, 2, 4, 6, 7, 8, 10, 12, 13, 14, 16, 18, 20]
+[-1, 0, 2, 4, 6, 7, 10, 12, 13, 14, 16, 18, 20]
+Testing: remove(new Integer(6)) + toString
+[-1, 0, 2, 4, 7, 10, 12, 13, 14, 16, 18, 20]
+
+Testing: size + indexOf + get
+Get element at index 0: -1
+Get element at index 1: 0
+Get element at index 2: 2
+Get element at index 3: 4
+Get element at index 4: 7
+Get element at index 5: 10
+Get element at index 6: 12
+Get element at index 7: 13
+Get element at index 8: 14
+Get element at index 9: 16
+Get element at index 10: 18
+Get element at index 11: 20
+
+Testing: size + contains
+Is element 0 contained in the list? true
+Is element 1 contained in the list? false
+Is element 2 contained in the list? true
+Is element 3 contained in the list? false
+Is element 4 contained in the list? true
+Is element 5 contained in the list? false
+Is element 6 contained in the list? false
+Is element 7 contained in the list? true
+Is element 8 contained in the list? false
+Is element 9 contained in the list? false
+Is element 10 contained in the list? true
+Is element 11 contained in the list? false
+
+Testing: getFirst + toString
+[-1, 0, 2, 4, 7, 10, 12, 13, 14, 16, 18, 20]
+-1
+
+Testing: getLast + toString
+[-1, 0, 2, 4, 7, 10, 12, 13, 14, 16, 18, 20]
+20
+
+Testing: set(3, 20) + toString
+[-1, 0, 2, 4, 7, 10, 12, 13, 14, 16, 18, 20]
+[-1, 0, 2, 20, 7, 10, 12, 13, 14, 16, 18, 20]
+
+Testing: toArray
+[Ljava.lang.Object;@15db9742
+-1 0 2 20 7 10 12 13 14 16 18 20 
+
+Testing: clear + toString
+[-1, 0, 2, 20, 7, 10, 12, 13, 14, 16, 18, 20]
+[]
+
+	** USING STRINGS **
+[Hello, World]
+[Hello]
+
