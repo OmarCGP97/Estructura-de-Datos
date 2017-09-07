@@ -1,0 +1,61 @@
+Testing toString
+[]
+
+Testing addFirst(i | 0 <= i < 10) + toString
+[0]
+[1, 0]
+[2, 1, 0]
+[3, 2, 1, 0]
+[4, 3, 2, 1, 0]
+[5, 4, 3, 2, 1, 0]
+[6, 5, 4, 3, 2, 1, 0]
+[7, 6, 5, 4, 3, 2, 1, 0]
+[8, 7, 6, 5, 4, 3, 2, 1, 0]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+Testing add(0, 10) + toString
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+Testing add(size(), -1) + toString
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1]
+
+Testing add(3, 20) + toString
+[10, 9, 8, 20, 7, 6, 5, 4, 3, 2, 1, 0, -1]
+
+Testing add(5, 15) + toString
+[10, 9, 8, 20, 7, 15, 6, 5, 4, 3, 2, 1, 0, -1]
+
+Testing add(7, 13) + toString
+[10, 9, 8, 20, 7, 15, 6, 13, 5, 4, 3, 2, 1, 0, -1]
+
+Testing add(9, 11) + toString
+[10, 9, 8, 20, 7, 15, 6, 13, 5, 11, 4, 3, 2, 1, 0, -1]
+
+Testing getFirst
+First element: 10
+
+Testing getLast + toString
+Last element: -1
+
+Testing get(5) + toString
+Element at index 5: 15
+
+Testing set(8, 33) + toString
+Element at index 8 before inserting 33: 5
+[10, 9, 8, 20, 7, 15, 6, 13, 33, 11, 4, 3, 2, 1, 0, -1]
+
+Testing clear + toString
+[]
+
+Testing addLast(i | 0 <= i < 10) + toString
+[0]
+[0, 1]
+[0, 1, 2]
+[0, 1, 2, 3]
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5, 6]
+[0, 1, 2, 3, 4, 5, 6, 7]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
