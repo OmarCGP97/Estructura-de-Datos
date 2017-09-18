@@ -1,0 +1,16 @@
+Testing array reversing
+Input: [1, 2, 3, 4, 5]
+Output: [5, 4, 3, 2, 1]
+
+Testing train ordering
+Train as it arrived to the station: [2, 3, 1, 2, 3]
+Train ordered by priority: [1, 2, 2, 3, 3]
+
+At the beginning
+Hanoi tower #1: [1, 2, 3]
+Hanoi tower #2: []
+Hanoi tower #3: []
+At the end
+Hanoi tower #1: []
+Hanoi tower #2: [1, 2, 3]
+Hanoi tower #3: []
