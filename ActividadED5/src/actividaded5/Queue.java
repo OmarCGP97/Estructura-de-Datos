@@ -50,5 +50,4 @@ public class Queue<E> implements IQueue<E> {
     public Object[] toArray() {
         return queue.toArray();
     }
-
 }
