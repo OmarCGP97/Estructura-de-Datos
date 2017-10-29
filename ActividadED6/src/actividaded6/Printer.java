@@ -16,7 +16,7 @@ public class Printer {
                 if(!state){
                     System.out.println("Printing "+printerSpool.remove());
                     state=true;
-                    Thread.sleep(5000);
+                    Thread.sleep(1000);
                 }
                 else{
                     throw new InterruptedException();
