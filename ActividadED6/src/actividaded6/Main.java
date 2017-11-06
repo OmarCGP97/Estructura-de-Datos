@@ -1,5 +1,7 @@
 package actividaded6;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static String checkForBalance(String toCheck) {
@@ -409,8 +411,76 @@ public class Main {
         return resultado;
     }
     
+    public static void quickSort(int values[], int start, int end){
+        //If the list has no more than one element, its already sorted
+        if(start >= end){
+            return;
+        }
+        //Use the first item as the dividing item
+        int divider = values[start];
+        //Move items < divisor to the front of the array and
+        //items >= divider to the end of the array
+        Stack<Integer> before = new Stack<Integer>();
+        Stack<Integer> after = new Stack<Integer>();
+        for(int i=start+1; i<= end; i++){
+            if(values[i]<divider){
+                before.push(values[i]);
+            }else{
+                after.push(values[i]);
+            }
+        }
+        int i = start;
+        while(!before.empty()){
+            values[i++]= before.pop();
+        }
+        int middle = i++;
+        values[middle]=divider;
+        while(!after.empty()){
+            values[i++]= after.pop();
+        }
+        //Recursively sort the two halves
+        quickSort(values,start,middle-1);
+        quickSort(values,middle+1,end);
+    }
+    
+    public static void mergeSort(int[] values, int[] scratch, int start, int end){
+        if(start>=end){
+            return;
+        }
+        int midpoint = (start + end)/2;
+        mergeSort(values, scratch, start, midpoint);
+        mergeSort(values, scratch, midpoint+1, end);
+        
+        int leftIndex = start;
+        int rigthIndex = midpoint+1;
+        int scratchIndex = leftIndex;
+        
+        while(leftIndex <= midpoint && rigthIndex <= end){
+            if(values[leftIndex]<=values[rigthIndex]){
+                scratch[scratchIndex]=values[leftIndex];
+                leftIndex = leftIndex+1;
+            }
+            else{
+                scratch[scratchIndex]=values[rigthIndex];
+                rigthIndex = rigthIndex+1;
+            }
+            scratchIndex+=1;
+            }
+        for(int i = leftIndex; i <= midpoint; i++){
+            scratch[scratchIndex]= values[i];
+            scratchIndex++;
+        }
+        for(int i = rigthIndex; i<= end; i++){
+            scratch[scratchIndex]= values[i];
+            scratchIndex++;
+        }
+        for(int i = start; i<= end; i++){
+            values[i]=scratch[i];
+        }
+    }
+    
     public static void main(String[] args) {
-        System.out.println("Testing balanced symbols");
+        /*System.out.println("Testing balanced symbols");
         System.out.println(checkForBalance("t = arr[3] + a) - 4"));
         System.out.println(checkForBalance("if (arr(3] < 4)"));
         System.out.println(checkForBalance("System.out.println(std.charAt(3);"));
@@ -542,7 +612,17 @@ public class Main {
         String evaluacion2 = "a(bc)de";
         System.out.println("Tested: "+reverseParentheses(evaluacion2));
         String evaluacion3 = "(ab)(cd)(ef)";
-        System.out.println("Tested: "+reverseParentheses(evaluacion3));
+        System.out.println("Tested: "+reverseParentheses(evaluacion3));*/
         
+        int[] arr6 = {23,1224,56321,121,11,233,123,56,78};
+        System.out.println("Before QuickSort: "+ Arrays.toString(arr6));
+        quickSort(arr6,0,arr6.length-1);
+        System.out.println("After QuickSort: "+Arrays.toString(arr6));
+        System.out.println("");
+        int[] uArray = {231,1200,5600,12,11,233,121,56,738};
+        int[] scratch = new int[uArray.length];
+        System.out.println("Before MergeSort: "+ Arrays.toString(uArray));
+        mergeSort(uArray,scratch,0,uArray.length-1);
+        System.out.println("After MergeSort: "+Arrays.toString(uArray));
     }
 }
