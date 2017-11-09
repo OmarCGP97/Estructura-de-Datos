@@ -296,4 +296,57 @@ public class LinkedList<E> implements List<E> {
 		
 		return getFirst();
 	}
+        
+        public int lastIndexOf(Object o){
+            int index = size()-1;
+            Node<E> current = header;
+            while(current.prev!=header){
+                if(current.prev.value.equals(o)){
+                    return index;
+                }
+                current=current.prev;
+                index--;
+            }
+            return -1;
+        }
+        
+        public int max(LinkedList<Integer> list){
+            if(list.isEmpty()){
+                return Integer.MIN_VALUE;
+            }else{
+                int greater=list.removeFirst();
+                int less=max(list);
+                if(greater>less){
+                    return greater;
+                }else{
+                    return greater;
+                }
+            }
+        }
+        
+        public static LinkedList<Integer> intersect (LinkedList<Integer> list1,LinkedList<Integer> list2 ){
+        LinkedList<Integer> intersect = new LinkedList<Integer>();
+        Node<Integer> centinela = list1.header;
+            for (int i = 0; i <= list1.size(); i++){
+                if (list2.contains(centinela.next.value)){
+                    intersect.addLast(centinela.next.value);
+                }
+                centinela = centinela.next;
+            }
+            
+        return intersect;
+        }
+        
+        public static LinkedList<Integer> difference (LinkedList<Integer> list1,LinkedList<Integer> list2 ){
+        LinkedList<Integer> difference = new LinkedList<Integer>();
+        Node<Integer> centinela = list1.header;
+            for (int i = 0; i <= list1.size()-1; i++){
+                if (!list2.contains(centinela.next.value)){
+                    difference.addLast(centinela.next.value);
+                }
+                centinela = centinela.next;
+            }
+            
+        return difference;
+        }
 }

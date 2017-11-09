@@ -304,7 +304,7 @@ public class Main {
     public static void printInt(Queue<Integer> queue) {
         for (int i = 0; i < queue.size(); i++) {
             int n = queue.remove();
-            System.out.println(n);
+            System.out.print(n+" ");
             queue.offer(n);
         }
     }
@@ -479,8 +479,159 @@ public class Main {
         }
     }
     
+    // Recursive function to return gcd of a and b
+    public static int GCD(int a, int b){
+        // Everything divides 0 
+        if (a == 0 || b == 0)
+           return 0;
+      
+        // base case
+        if (a == b)
+            return a;
+      
+        // a is greater
+        if (a > b)
+            return GCD(a-b, b);
+        return GCD(a, b-a);
+    }
+    
+    /* Function to calculate x raised to the power y */
+    public static int pow(int x, int y){
+    if (y == 0){
+        return 1;
+    }
+    else if (y%2 == 0){
+        return pow(x, y/2)*pow(x, y/2);
+    }
+    else{
+        return x*pow(x, y/2)*pow(x, y/2);
+    }
+    }
+    
+    public static void toBinary(int n){
+    String resultado = "";
+        /* step 1 */
+    if (n > 1)
+        toBinary(n/2);
+ 
+    /* step 2 */
+    System.out.printf("%d", n%2);
+    }
+    
+    public static int count(String s, char c)
+    {
+        int res = 0;
+ 
+        for (int i=0; i<s.length(); i++)
+        {
+            // checking character in string
+            if (s.charAt(i) == c)
+            res++;
+        } 
+        return res;
+    }
+    
+    public static int count(LinkedList<Integer> a, int x){
+        int res = 0;
+ 
+        for (int i=0; i<a.size(); i++)
+        {
+            // checking character in string
+            if (a.get(i)== x){
+                res++;
+            }
+        } 
+        return res;
+    }
+ 
+    public static int consecutiveAddition(int value){
+        if (value > 0)
+        {
+          return value + consecutiveAddition(value - 1);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
+    public static Queue<Integer> mergeQueueSorted(Queue<Integer> a, Queue<Integer> b) {
+        Queue<Integer> result = new Queue<Integer>();
+        while (!a.isEmpty() && !b.isEmpty()) {
+            // System.out.println(a.head.data + " " + b.head.data);
+            if (a.element() < b.element()) {
+                result.offer(a.element());
+                a.remove();
+            } else {
+                result.offer(b.element());
+                b.remove();
+            }
+        }
+        while (!a.isEmpty()) {
+            result.offer(a.element());
+            a.remove();
+        }
+        while (!b.isEmpty()) {
+            result.offer(b.element());
+            b.remove();
+        }
+        return result;
+    }
+    
+    //Examen del Tercer Registro
+    
+    public static String allStar(String str) {
+        if (str.equals("") || str.length() == 1){
+            return str;
+        }else{
+            return str.charAt(0) + "*" + allStar(str.substring(1));
+        }
+    }
+    
+    public static int maxDepth(String str){
+        int n = str.length();
+        if (n == 0){
+            return 0;
+        }
+        Stack<Character> stack = new Stack<Character>();
+        char c = '\0';
+        int maxLength = 0;
+        for (int i = 0; i < n; i++){
+            c = str.charAt(i);
+            if (c == '('){
+                stack.push(c);
+            }
+            else if (c == ')'){
+                maxLength = Math.max(maxLength, stack.size());
+                stack.pop();
+            }
+        }
+        if (stack.size() != 0){
+            return -1;
+        }
+        return maxLength;
+    }
+    
+    public static String endX(String str) {
+        if (str.equals("")){
+            return str;
+        }
+        if (str.charAt(0) == 'x'){
+            return endX(str.substring(1)) + 'x';
+        }else{
+            return str.charAt(0) + endX(str.substring(1));
+        }
+    }
+    
+    public static int shapeArea(int n){
+        if ( n == 1){
+            return 1;
+        }
+       return 4*(n-1)+shapeArea(n-1); 
+    }
+    
     public static void main(String[] args) {
-        /*System.out.println("Testing balanced symbols");
+        System.out.println("Testing balanced symbols");
         System.out.println(checkForBalance("t = arr[3] + a) - 4"));
         System.out.println(checkForBalance("if (arr(3] < 4)"));
         System.out.println(checkForBalance("System.out.println(std.charAt(3);"));
@@ -606,13 +757,13 @@ public class Main {
         System.out.println("List b: "+b);
         System.out.println("Merged: "+mergeLinkedSorted(a,b));
         
-        System.out.println("Testing Reversing Parentheses");
-        String evaluacion = "!Mi examen de estructura de datos!";
-        System.out.println("Tested: "+reverseParentheses(evaluacion));
-        String evaluacion2 = "a(bc)de";
-        System.out.println("Tested: "+reverseParentheses(evaluacion2));
-        String evaluacion3 = "(ab)(cd)(ef)";
-        System.out.println("Tested: "+reverseParentheses(evaluacion3));*/
+        //System.out.println("Testing Reversing Parentheses");
+        //String evaluacion = "!Mi examen de estructura de datos!";
+        //System.out.println("Tested: "+reverseParentheses(evaluacion));
+        //String evaluacion2 = "a(bc)de";
+        //System.out.println("Tested: "+reverseParentheses(evaluacion2));
+        //String evaluacion3 = "(ab)(cd)(ef)";
+        //System.out.println("Tested: "+reverseParentheses(evaluacion3));
         
         int[] arr6 = {23,1224,56321,121,11,233,123,56,78};
         System.out.println("Before QuickSort: "+ Arrays.toString(arr6));
@@ -624,5 +775,133 @@ public class Main {
         System.out.println("Before MergeSort: "+ Arrays.toString(uArray));
         mergeSort(uArray,scratch,0,uArray.length-1);
         System.out.println("After MergeSort: "+Arrays.toString(uArray));
+        
+        System.out.println("");
+        int uno = 98, dos = 56;
+        System.out.println("GCD of " + uno +" and " + dos + " is " + GCD(uno, dos));
+        System.out.println("");
+        
+        int x = 2;
+        int y = 3;
+        System.out.print("Number "+x+", elevated to "+y+" is: ");
+        System.out.println(pow(x, y));
+        
+        System.out.println("");
+        System.out.print("Binary representation of 7 is: ");
+        toBinary(7);
+        System.out.println("");
+        System.out.print("Binary representation of 4 is: ");
+        toBinary(4);
+        System.out.println("");
+        System.out.println("");
+        
+        LinkedList<Integer> c = new LinkedList<Integer>();
+        c.addFirst(5);
+        c.addFirst(12);
+        c.addFirst(5);
+        c.addFirst(10);
+        c.addFirst(5);
+        int z = 5;
+        System.out.println("Times of "+z+" in the list: "+count(c,z));
+        System.out.println("");
+        
+        LinkedList<Integer> d = new LinkedList<Integer>();
+        d.addFirst(9);
+        d.addFirst(5);
+        d.addFirst(5);
+        d.addFirst(10);
+        d.addFirst(21);
+        int g = 5;
+        System.out.println("The last index of "+g+" is:");
+        System.out.println(d.lastIndexOf(g));
+        
+        System.out.println("");
+        Queue<Integer> q1 = new Queue<Integer>();
+        Queue<Integer> q2 = new Queue<Integer>();
+        q1.offer(10);
+        q1.offer(20);
+        q1.offer(30);
+        q1.offer(40);
+        q2.offer(15);
+        q2.offer(25);
+        q2.offer(50);
+        q2.offer(80);
+        
+        System.out.println("Testing MergeQueueSort with: ");
+        printInt(q1);
+        System.out.println("");
+        printInt(q2);
+        System.out.println("");
+        System.out.print("Both Queues Sorted: ");
+        Print(mergeQueueSorted(q1,q2));
+        System.out.println("");
+        System.out.println("");
+        
+        LinkedList<Integer> u = new LinkedList<Integer>();
+        u.addFirst(9);
+        u.addFirst(5);
+        u.addFirst(5);
+        u.addFirst(10);
+        u.addFirst(21);
+        System.out.println("The maximum value is: "+u.max(u));
+        System.out.println("");
+        //System.out.println("RemoveFirstOcurrence: "+removeFirstOcurrence(u,5));
+        
+        System.out.println("Consecutive Addition of 9: "+consecutiveAddition(9));
+        System.out.println("");
+        System.out.println("Examen del tercer registro: ");
+        System.out.println("");
+        System.out.println("Trying allStar with Hello: "+allStar("Hello"));
+        System.out.println("Trying allStar with abc: "+allStar("abc"));
+        System.out.println("");
+        System.out.println("Trying MaxDepth with \"(p((q))((s)t))\": "+maxDepth("(p((q))((s)t))"));
+        System.out.println("Trying MaxDepth with (\"\"): "+maxDepth(""));
+        
+        System.out.println("");
+        System.out.println("Trying endX with rexx: "+endX("rexx"));
+        System.out.println("Trying endX with xxhixx: "+endX("xxhixx"));
+        
+        System.out.println("");
+        System.out.println("Trying intersect with: ");
+        System.out.println("List a: [0,1,2,3,4,5,6,7,8,9]");
+        System.out.println("List b: [5,6,7,8,9,10,11,12,13,14,15]");
+        LinkedList<Integer> w = new LinkedList<Integer>();
+        w.addFirst(9);
+        w.addFirst(8);
+        w.addFirst(7);
+        w.addFirst(6);
+        w.addFirst(5);
+        w.addFirst(4);
+        w.addFirst(3);
+        w.addFirst(2);
+        w.addFirst(1);
+        w.addFirst(0);
+        LinkedList<Integer> p = new LinkedList<Integer>();
+        p.addFirst(15);
+        p.addFirst(14);
+        p.addFirst(13);
+        p.addFirst(12);
+        p.addFirst(11);
+        p.addFirst(10);
+        p.addFirst(9);
+        p.addFirst(8);
+        p.addFirst(7);
+        p.addFirst(6);
+        p.addFirst(5);
+        LinkedList<Integer> v = new LinkedList<Integer>();
+        System.out.println("Intersection is: "+v.intersect(w,p));
+        
+        System.out.println("");
+        System.out.println("Trying difference with: ");
+        System.out.println("List a: [0,1,2,3,4,5,6,7,8,9]");
+        System.out.println("List b: [5,6,7,8,9,10,11,12,13,14,15]");
+        LinkedList<Integer> f = new LinkedList<Integer>();
+        System.out.println("Difference is: "+f.difference(w,p));
+        
+        System.out.println("");
+        System.out.println("Trying shapeArea with: ");
+        System.out.println("Area of 3: "+shapeArea(3));
+        System.out.println("Area of 4: "+shapeArea(4));
+        System.out.println("Area of 5: "+shapeArea(5));
     }
 }
