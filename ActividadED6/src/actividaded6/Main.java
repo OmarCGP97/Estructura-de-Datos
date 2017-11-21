@@ -1,6 +1,7 @@
 package actividaded6;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
@@ -630,6 +631,22 @@ public class Main {
        return 4*(n-1)+shapeArea(n-1); 
     }
     
+    public static void executeIA(){ 
+        System.out.println("Voy a adivinar el animal en el que piensas\n"); 
+        BinaryNodeS root=new BinaryNodeS("Este respira aire?"); 
+        root.LeftChild=new BinaryNodeS("Perro");root.RigthChild=new BinaryNodeS("Pescado"); 
+        Scanner in=new Scanner(System.in); 
+        boolean condition=true; 
+        while(condition){ 
+            root.Pensar(); 
+            System.out.println("¿Desea volver a intentarlo?"); 
+            String r=in.nextLine(); 
+            if(r.equalsIgnoreCase("N")||r.equalsIgnoreCase("No")) 
+                condition=false; 
+        } 
+        System.out.println("Gracias por participar"); 
+    }
+    
     public static void main(String[] args) {
         System.out.println("Testing balanced symbols");
         System.out.println(checkForBalance("t = arr[3] + a) - 4"));
@@ -903,5 +920,33 @@ public class Main {
         System.out.println("Area of 3: "+shapeArea(3));
         System.out.println("Area of 4: "+shapeArea(4));
         System.out.println("Area of 5: "+shapeArea(5));
+        
+        System.out.println("");
+        System.out.println("Trying addNode: ");
+        BinaryNode root=new BinaryNode(0);
+        System.out.println("Empty Tree");
+        root.preorderTraversal();
+        for (int i=0;i<22;i++){
+            root.addNode(i);
+            System.out.println();
+            root.inorderTraversal();
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("Find Node");
+        System.out.println(root.findNode(21).value);
+        System.out.println();
+        System.out.println("inOrder Traversal");
+        root.inorderTraversal();
+        System.out.println();
+        System.out.println();
+        System.out.println("postOrder Traversal");
+        root.postorderTraversal();
+        System.out.println();
+        
+        System.out.println();
+        System.out.println("Probando Inteligencia Artificial: ");
+        System.out.println();
+        executeIA();
     }
 }
