@@ -349,4 +349,67 @@ public class LinkedList<E> implements List<E> {
             
         return difference;
         }
+        
+        public void reverseOrder(int first, int last){
+            Node<E> current = new Node<E>();
+            int count = 0;
+            for(int i = first; i <= last/2; i++){
+                current.value = get(i);
+                set(i, get(last-count));
+                set(last-count,current.value);
+                count++;
+            }
+        }
+        
+        public int countValue(E element){
+            int count = 0;
+            while(header.next != header){
+                header = header.next;
+                if(header.value==element){
+                    count++;
+                }
+            }
+            return count;
+        }
+        
+        public int countDuplicates() {
+            if (header == null) {
+                return 0;
+            }
+            int total = 0;
+            Node<E> prev = new Node<>();
+            Node<E> current = new Node<>();
+            prev = header;
+            current = prev.next;
+            int count = 0;
+            while (current != header) {
+                if (current.value == prev.value) {
+                    count++;
+                } else {
+                    total += count;
+                    count = 0;
+                }
+                prev = prev.next;
+                current = prev.next;
+            }
+            total += count;
+            return total;
+        }
+        
+        public int countValue2(LinkedList<Integer> List, int num) {
+            int count = 0;
+            for (int i = 0; i<List.size();i++) {
+                if (!List.contains(num)) {
+                    return 0;
+                }
+            }
+            for (int i = 0; i<List.size();i++) {
+                if (List.get(i) == num) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        
+        
 }

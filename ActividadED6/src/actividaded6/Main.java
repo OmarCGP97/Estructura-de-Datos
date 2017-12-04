@@ -2,6 +2,9 @@ package actividaded6;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class Main {
 
@@ -647,6 +650,198 @@ public class Main {
         System.out.println("Gracias por participar"); 
     }
     
+    public static int treeSize(BinaryNode node){
+        int count = 1;
+        if(node.LeftChild != null){
+            count += treeSize(node.LeftChild);
+        }
+        if(node.RigthChild != null){
+            count += treeSize(node.RigthChild);
+        }
+        return count;
+    }
+    
+    public static int countOneChild(BinaryNode node){
+        if(node.LeftChild!=null){
+            if(node.RigthChild!=null){
+                return countOneChild(node.LeftChild)+countOneChild(node.RigthChild);
+            }else{
+                return countOneChild(node.LeftChild)+1;
+            }
+        }
+        if(node.RigthChild!=null){
+            if(node.LeftChild!=null){
+                return countOneChild(node.LeftChild)+countOneChild(node.RigthChild);
+            }else{
+                return countOneChild(node.RigthChild)+1;
+            }
+        }else{
+            return 0;
+        }
+    }
+    
+    public static String allStar1(String str) {
+        if (str.length() <= 1) {
+            return str;
+        }
+        return str.substring(0, 1) + "*" + allStar(str.substring(1));
+
+    }
+
+    public static String endX1(String str) {
+        if (str.length() <= 1) {
+            return str;
+        }
+        if (str.substring(0, 1).equals("x")) {
+            return endX(str.substring(1)) + "x";
+        } else {
+            return str.substring(0, 1) + endX(str.substring(1));
+        }
+    }
+
+    public static int maxDepth1(String exp) {
+        int depth = 0;
+        int open = 0;
+        int close = 0;
+        Stack<String> comparing = new Stack<String>();
+        depth = comparing.size();
+        for (int i = 0; i < exp.length(); i++) {
+            if (exp.charAt(i) == '(') {
+                comparing.push("(");
+                open++;
+                if (comparing.size() > depth) {
+                    depth = comparing.size();
+                }
+
+            }
+            if (exp.charAt(i) == ')') {
+                comparing.pop();
+                close++;
+            }
+        }
+        if (comparing.empty() && open == close) {
+            return depth;
+        } else {
+            return -1;
+        }
+    }
+    
+    public static String primeFactors(int n){
+        String result = "";
+        while (n%2==0)
+        {
+            result += (2 + ",");
+            n /= 2;
+        }
+        for (int i = 3; i <= Math.sqrt(n); i+= 2)
+        {
+            while (n%i == 0)
+            {
+                result += (i + ",");
+                n /= i;
+            }
+        }
+        if (n > 2){
+            result += n;
+        }
+        return result;
+    }
+    
+    //Problema 5
+    public static String cleanString(String str){
+        String resultado = str.replaceAll("[^a-zA-Z]", "");
+        return resultado.toUpperCase();
+    }
+    
+    //Problema 6
+    public static int mystery(int m, int n){
+        if(m == 0){
+            return n + 1;
+          }else if(m > 0 && n == 0){
+              return mystery(m - 1, 1);
+            }else if(m > 0 && n > 0){
+              return mystery(m - 1, mystery(m, n-1));
+            }else{
+                return mystery(m , n);
+            }
+    }
+    
+    //Problema 8
+    public static LinkedList<Integer> union(LinkedList<Integer> list1, LinkedList<Integer> list2){
+        LinkedList<Integer> intersection = new LinkedList<Integer> ();
+            while(!list1.isEmpty()){
+                intersection.addLast(list1.removeFirst());
+            }
+            while(!list2.isEmpty()){
+                intersection.addLast(list2.removeFirst());
+            }
+        return intersection;
+    }
+    
+    //Problema 11
+    public static void moveToBeginning(LinkedList<Integer> lista, int i){
+        if (i < 0 || i >= lista.size()){
+            throw new IndexOutOfBoundsException();
+       }
+        lista.addFirst(lista.remove(i));
+    }
+    
+    //Problema 15
+    public static void superSort(String arr[]) {
+        if (arr.length == 0) {
+            return;
+        }
+        int m = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (m < arr[i].length()) {
+                m = arr[i].length();
+            }
+        }
+        int bucketC = 10;
+        HashMap<Character, Vector<String>> buckets = new HashMap<Character, Vector<String>>(bucketC);
+        char a = '0';
+        for (int i = 0; i <= bucketC; i++, a++) {
+            buckets.put(a, new Vector<String>());
+        }
+        for (int i = 0; i < arr.length; i++) {
+            String now = arr[i];
+            char character = now.charAt(0);
+            buckets.get(character).add(arr[i]);
+        }
+        int index = 0;
+        for (char clave = '0'; clave <= '9'; clave++) {
+            Vector<String> bucket = buckets.get(clave);
+            for (int i = 1; i < bucket.size(); i++) {
+                String result = bucket.get(i);
+                bucket.remove(i);
+                int j;
+                for (j = i - 1; j >= 0 && bucket.get(j).compareToIgnoreCase(result) > 0; j--) {
+                    bucket.add(j + 1, bucket.get(j));
+                    bucket.remove(j);
+                }
+                bucket.add(j + 1, result);
+            }
+            for (int j = 0; j < bucket.size(); j++) {
+                arr[index++] = bucket.get(j);
+            }
+        }
+    }
+    
+    public static void moveToTop(Stack<Integer> stack, int i){
+        Stack<Integer> temp = new Stack<Integer>();
+        while(stack.peek() != i){
+            int quitar = stack.peek();
+            stack.pop();
+            temp.push(quitar);
+        }stack.pop();
+        while(!temp.empty()){
+            int value = temp.peek();
+            temp.pop();
+            stack.push(value);
+        }
+        stack.push(i);
+    }
+    
     public static void main(String[] args) {
         System.out.println("Testing balanced symbols");
         System.out.println(checkForBalance("t = arr[3] + a) - 4"));
@@ -934,7 +1129,7 @@ public class Main {
         System.out.println();
         System.out.println();
         System.out.println("Find Node");
-        System.out.println(root.findNode(21).value);
+        System.out.println(root.findNode(7).value);
         System.out.println();
         System.out.println("inOrder Traversal");
         root.inorderTraversal();
@@ -945,8 +1140,161 @@ public class Main {
         System.out.println();
         
         System.out.println();
-        System.out.println("Probando Inteligencia Artificial: ");
+        System.out.println("Tree Size");
+        System.out.println(treeSize(root));
+        
+        BinaryNode root2=new BinaryNode(0);
+        BinaryNode node1 = new BinaryNode(1);
+        BinaryNode node2 = new BinaryNode(2);
+        BinaryNode node3 = new BinaryNode(3);
+        BinaryNode node4 = new BinaryNode(4);
+        BinaryNode node5 = new BinaryNode(5);
+        BinaryNode node6 = new BinaryNode(6);
+        BinaryNode node7 = new BinaryNode(7);
+        
+        root2.LeftChild=node2;
+        root2.RigthChild=node6;
+        node2.LeftChild=node3;
+        node3.LeftChild=node4;
+        node3.RigthChild=node5;
+        root2.RigthChild=node6;
+        node6.LeftChild=node7;
+        
         System.out.println();
-        executeIA();
+        System.out.println("Count One Child");
+        System.out.println(countOneChild(root2));
+        
+        System.out.println();
+        System.out.println("Probando Inteligencia Artificial: No");
+        System.out.println();
+        //executeIA();
+        
+        //Ejercicios previos al examen//
+        System.out.println("Testing Prime Factors of 60: ");
+        System.out.println(primeFactors(60));
+        System.out.println();
+        
+        System.out.println("Trying reverseOrder");
+        System.out.println("List a: [0,1,2,3,4,5,6,7,8,9]");
+        LinkedList<Integer> r = new LinkedList<Integer>();
+        r.addFirst(9);
+        r.addFirst(8);
+        r.addFirst(7);
+        r.addFirst(6);
+        r.addFirst(5);
+        r.addFirst(4);
+        r.addFirst(3);
+        r.addFirst(2);
+        r.addFirst(1);
+        r.addFirst(0);
+        r.reverseOrder(1,7);
+        System.out.println("reversedOrder: "+r);
+        System.out.println("");
+        
+        System.out.println("Trying countValue and countDuplicates");
+        System.out.println("List a: [3,2,2,2,2,2,6,7,8,2]");
+        LinkedList<Integer> l = new LinkedList<Integer>();
+        l.addFirst(2);
+        l.addFirst(8);
+        l.addFirst(7);
+        l.addFirst(6);
+        l.addFirst(2);
+        l.addFirst(2);
+        l.addFirst(2);
+        l.addFirst(2);
+        l.addFirst(2);
+        l.addFirst(3);
+        System.out.println("countDuplicates of 2: "+l.countDuplicates());
+        System.out.println("CountValue of 2: "+l.countValue2(l,2));
+        
+        System.out.println("");
+        System.out.println("Trying remove from Stack");
+        Stack<Integer> pila = new Stack<>();
+        pila.push(2);
+        pila.push(3);
+        pila.push(4);
+        pila.push(2);
+        pila.push(5);
+        System.out.println("Removed Element: "+pila.remove(1));
+        System.out.println("Stack new size: "+pila.size());
+        System.out.println("");
+        
+        //Examen Final Estructura de Datos
+        //Codigos de Prueba
+        //Omar Alejandro Castañeda Gomez A01373707
+        
+        System.out.println("Examen Final Pruebas");
+        System.out.println("");
+        System.out.println("Testing moveToBeginning: ");
+        System.out.println("List a: [1,2,3,4,5,6]");
+        LinkedList<Integer> e = new LinkedList<Integer>();
+        e.addFirst(6);
+        e.addFirst(5);
+        e.addFirst(4);
+        e.addFirst(3);
+        e.addFirst(2);
+        e.addFirst(1);
+        moveToBeginning(e,3);
+        System.out.println("Resultado"+e);
+        System.out.println("");
+        System.out.println("Testing Union");
+        LinkedList<Integer> i = new LinkedList<Integer>();
+        i.addFirst(5);
+        i.addFirst(4);
+        i.addFirst(3);
+        i.addFirst(2);
+        i.addFirst(1);
+        i.addFirst(0);
+        System.out.println("List a: [0,1,2,3,4,5]");
+        System.out.println("List b: [5,6,7,8]");
+        LinkedList<Integer> t = new LinkedList<Integer>();
+        t.addFirst(8);
+        t.addFirst(7);
+        t.addFirst(6);
+        t.addFirst(5);
+        System.out.println("Resultado"+union(i,t));
+        System.out.println("");
+        System.out.println("Testing CleanString");
+        System.out.println(cleanString("Omar234Ale*#4jandro"));
+        System.out.println(cleanString("H*o*l+a"));
+        System.out.println(cleanString("B´i-e*n"));
+        System.out.println("");
+        System.out.println("Testing Get");
+        Stack<Integer> Pila = new Stack<>();
+        Pila.push(2);
+        Pila.push(3);
+        Pila.push(4);
+        Pila.push(2);
+        Pila.push(5);
+        System.out.println("Stack: [5,2,4,3,2]");
+        System.out.print("Get value of position 4: ");
+        System.out.println(Pila.get(4));
+        System.out.println("");
+        System.out.println("Testing Mystery");
+        System.out.println("For 0 and 1: "+mystery(0,1));
+        System.out.println("For 2 and 4: "+mystery(2,4));
+        System.out.println("For 1 and 4: "+mystery(1,4));
+        System.out.println("For 3 and 2: "+mystery(3,2));
+        //System.out.println("For 3 and 2: "+mystery(4,1));
+        System.out.println("");
+        System.out.println("Testing superSort");
+        System.out.println("Original Array: [\"123\",\"398\",\"210\",\"019\",\"528\",\"003\",\"513\",\"129\",\"220\",\"294\"]");
+        String [] arr1 = {"123","398","210","019","528","003","513","129","220","294"};
+        System.out.print("Changed Array: ");
+        superSort(arr1);
+        System.out.println(Arrays.toString(arr1));
+        System.out.println("");
+        System.out.println("Testing MoveToTop");
+        Stack<Integer> Pila2 = new Stack<Integer>();
+        Pila2.push(9);
+        Pila2.push(6);
+        Pila2.push(5);
+        Pila2.push(3);
+        System.out.println("Original Stack: [3,5,6,9]");
+        moveToTop(Pila2,9);
+        System.out.println("Stack Changed: "+Arrays.toString(Pila2.toArray()));
+        System.out.println("");
+        System.out.println("Fin de Examen Final Pruebas");
+        
     }
 }

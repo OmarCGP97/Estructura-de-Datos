@@ -44,4 +44,37 @@ public class Stack<E> implements IStack<E> {
         public int size() {
             return (stack.toArray()).length;
         }
+        
+        public E remove(int index) {
+            Stack<E> tmpStack = new Stack<E>();
+            if (empty()) {
+                return null;
+            } else {
+                for (int i = 0; i < index; i++) {
+                    tmpStack.push(this.pop());
+                }
+                E removedElement = tmpStack.pop();
+                while (!tmpStack.empty()) {
+                    this.push(tmpStack.pop());
+                }
+                return removedElement;
+            }
+        }
+        
+        //Problema 12
+        public E get(int index) {
+            Stack<E> tmpStack = new Stack<E>();
+            if (empty()) {
+                return null;
+            } else {
+                for (int i = 0; i < index+1; i++) {
+                    tmpStack.push(this.pop());
+                }
+                E removedElement = tmpStack.pop();
+                while (!tmpStack.empty()) {
+                    this.push(tmpStack.pop());
+                }
+                return removedElement;
+            }
+        }
 }
